@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Rick y Morty App</title>
+    <?php $this->assets->outputCss(); ?>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="/episode">Capítulos</a></li>
+                <li><a href="/character">Personajes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>Lista de episodios</h1>
+
+    <div class="content">
+        
+        <div class="row">
+
+            <?php foreach($list_episodes as $episode) { ?>
+
+                <div class="col s8 m4">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title"><?php echo $episode['episode'] . ' - ' . $episode['name'] ; ?></span>
+                            <p>Fecha de estreno: <?php echo $episode['air_date'] ?></p>
+                        </div>
+                    </div>
+                </div>
+
+           <?php } ?>
+
+        </div>            
+        
+    </div>
+
+    <?php $this->assets->outputJs(); ?>
+</body>
+</html>
