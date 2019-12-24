@@ -8,34 +8,42 @@
         <div class="nav-wrapper">
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="/episode">Capítulos</a></li>
-                <li><a href="/character">Personajes</a></li>
+                <li><a href="#!">Personajes</a></li>
             </ul>
         </div>
     </nav>
 
-    <h1>Lista de episodios</h1>
+    <div class="container">
 
-    <div class="content">
+        <h1>Lista de episodios</h1>
+
+        <a class="waves-effect waves-light btn-small" id="convertToCard" title="Card"><i class="material-icons">view_module</i></a>
+        <a class="waves-effect waves-light btn-small" id="convertToList" title="List"><i class="material-icons">view_headline</i></a>
         
-        <div class="row">
+        <div class="content">
+            
+            <div class="row episode-row">
 
-            <?php foreach($list_episodes as $episode) { ?>
+                <?php foreach($list_episodes as $episode) { ?>
 
-                <div class="col s8 m4">
-                    <div class="card blue-grey darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title"><?php echo $episode['episode'] . ' - ' . $episode['name'] ; ?></span>
-                            <p>Fecha de estreno: <?php echo $episode['air_date'] ?></p>
+                    <div class="col s12 m6">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <span class="card-title"><?php echo $episode['episode'] . ' - ' . $episode['name'] ; ?></span>
+                                <p>Fecha de estreno: <?php echo $episode['air_date'] ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-           <?php } ?>
+            <?php } ?>
 
-        </div>            
-        
+            </div>            
+            
+        </div>
+
     </div>
 
     <?php $this->assets->outputJs(); ?>
+    <script>const episodes = <?php echo json_encode($list_episodes) ?></script>
 </body>
 </html>
