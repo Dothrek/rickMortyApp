@@ -1,6 +1,10 @@
 function loadListeners() {
     document.getElementById('convertToList').addEventListener('click', changeToList, true);
     document.getElementById('convertToCard').addEventListener('click', changeToCard, true);
+
+    Array.from(document.getElementsByClassName('favorite-button')).forEach(function(element) {
+        element.addEventListener('click', toggleFav, true);
+    });
 }
 
 
@@ -40,6 +44,33 @@ function changeToCard() {
     });
 
     div_content[0].innerHTML = new_html;
+}
+
+function toggleFav() {
+    element = $(this);
+    episode_name = element.data('episode');
+    currently_faved = element.text();
+
+    if (currently_faved === 'favorite_border') {
+        is_fav = false;
+    } else if (currently_faved === 'favorite') {
+        is_fav = true;
+    } else {
+        return;
+    }
+
+    $.ajax({
+        url: 'http://localhost:8000/episode/addToFavorite',
+        type: 'POST',
+        data: {
+            'episode_name': episode_name,
+            'is_fav': is_fav
+        },
+        success: function() {
+            console.log('funciona')
+            console.log(element);
+        }
+    });
 }
 
 

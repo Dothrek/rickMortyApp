@@ -45,4 +45,41 @@ class EpisodeController extends Controller
 
     }
 
+    public function addToFavoriteAction()
+    {
+
+        $favorite = new Favorites();
+
+        $favorite->assign(
+            $this->request->getPost(),
+            null,
+            [
+                "episode_name",
+                "is_fav",
+            ]
+        );
+
+        $success = $favorite->save();
+
+        $this->view->disable();
+
+
+        $favorite->save(); 
+        $fetchedUser = Favorites::find('episode_name');
+        // var_dump($fetchedUser);
+
+        echo 'tiene que llegar' . PHP_EOL;
+        echo $favorite->episode_name . PHP_EOL;
+        echo $favorite->is_fav . PHP_EOL;
+        print_r($this->request->getPost());
+        echo $success . PHP_EOL;
+        echo 'hola?';
+        print_r($this->db);
+    }
+
+    public function removeFromFavoriteAction()
+    {
+
+    }
+
 }
